@@ -1,0 +1,38 @@
+﻿@model SamsWarehouse.Models.ShoppingList
+
+@{
+    ViewData["Title"] = "Shopping List Details";
+}
+
+<h1>Shopping List Details</h1>
+
+<div>
+    <h4>Shopping List</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FinalisedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FinalisedDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+<h4>

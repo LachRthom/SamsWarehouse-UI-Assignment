@@ -1,0 +1,65 @@
+﻿@model SamsWarehouse.Models.ViewModels.ShoppingListViewModel
+
+@{
+    ViewData["Title"] = "Edit Shopping List";
+}
+
+<h1>Edit Shopping List</h1>
+
+<h4>@Model.ShoppingList.Name</h4>
+<hr />
+<div>
+    <h3>Products in the Shopping List</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Unit</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ShoppingList.ListItems)
+            {
+                var product = Model.Products.FirstOrDefault(p => p.ProductId == item.ProductId);
+                <tr>
+                    <td>@product.ItemName</td>
+                    <td>@product.Unit</td>
+                    <td>@product.UnitPrice</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.TotalPrice</td>
+                    <td>
+                        <form asp-action="RemoveItem" method="post">
+                            <input type="hidden" name="shoppingListId" value="@Model.ShoppingList.Id" />
+                            <input type="hidden" name="itemId" value="@item.Id" />
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h3>Add Product</h3>
+    <form asp-action="AddItem" method="post">
+        <input type="hidden" name="ShoppingList.Id" value="@Model.ShoppingList.Id" />
+        <div class="form-group">
+            <label for="productId">Product</label>
+            <select asp-for="ShoppingListItem.ProductId" class="form-control" asp-items="@(new SelectList(Model.Products, "ProductId", "ItemName"))"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="ShoppingListItem.Quantity"></label>
+            <input asp-for="ShoppingListItem.Quantity" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

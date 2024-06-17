@@ -1,0 +1,48 @@
+﻿@model SamsWarehouse.Models.ShoppingList
+
+@{
+    ViewData["Title"] = "Create Shopping List";
+}
+
+<h1>Create Shopping List</h1>
+
+<h4>Shopping List</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post" asp-antiforgery="true">
+            <!-- Display UserId -->
+            <div class="form-group">
+                <label>User ID</label>
+                <input type="text" class="form-control" value="@ViewBag.UserId" readonly />
+            </div>
+
+            <!-- Name field -->
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <!-- FinalisedDate field -->
+            <div class="form-group">
+                <label asp-for="FinalisedDate"></label>
+                <input asp-for="FinalisedDate" class="form-control" type="datetime-local" />
+                <span asp-validation-for="FinalisedDate" class="text-danger"></span>
+            </div>
+
+            <!-- Total field -->
+            <div class="form-group">
+                <label asp-for="Total"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

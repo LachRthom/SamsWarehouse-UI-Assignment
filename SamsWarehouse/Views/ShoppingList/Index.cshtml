@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SamsWarehouse.Models.ShoppingList>
+
+@{
+    ViewData["Title"] = "Shopping Lists";
+}
+
+<h1>Shopping Lists</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Shopping List</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Creation Date</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td> <!-- Assuming Id is the identifier for the shopping list name -->
+                <td>@Html.DisplayFor(modelItem => item.FinalisedDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
